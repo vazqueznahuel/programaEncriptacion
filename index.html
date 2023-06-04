@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encriptar y Desencriptar Entero</title>
+  <script>
+    function encriptar() {
+      var numero = document.getElementById("numero").value;
+      var encriptado = "";
+      
+      for (var i = 0; i < numero.length; i++) {
+        var digito = parseInt(numero.charAt(i));
+        var encriptadoDigito = (digito + 7) % 10;
+        encriptado += encriptadoDigito;
+      }
+      
+      // Intercambiar los dígitos
+      var primerDigito = encriptado.charAt(0);
+      var tercerDigito = encriptado.charAt(2);
+      var segundoDigito = encriptado.charAt(1);
+      var cuartoDigito = encriptado.charAt(3);
+      
+      var resultado = tercerDigito + cuartoDigito + primerDigito + segundoDigito;
+      document.getElementById("resultado").innerHTML = "Número encriptado: " + resultado;
+    }
+    
+    function desencriptar() {
+      var numeroEncriptado = document.getElementById("numeroEncriptado").value;
+      var desencriptado = "";
+      
+      // Intercambiar los dígitos
+      var primerDigito = numeroEncriptado.charAt(0);
+      var tercerDigito = numeroEncriptado.charAt(2);
+      var segundoDigito = numeroEncriptado.charAt(1);
+      var cuartoDigito = numeroEncriptado.charAt(3);
+      
+      var encriptado = tercerDigito + cuartoDigito + primerDigito + segundoDigito;
+      
+      for (var i = 0; i < encriptado.length; i++) {
+        var digito = parseInt(encriptado.charAt(i));
+        var desencriptadoDigito = (digito + 10 - 7) % 10;
+        desencriptado += desencriptadoDigito;
+      }
+      
+      document.getElementById("resultadoDesencriptado").innerHTML = "Número desencriptado: " + desencriptado;
+    }
+  </script>
+  <style>
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    body {
+        background-color: #C6D0D8;
+    }
+
+    h2 {
+        text-align: center;
+        padding: 15px;
+        background-color: #C6D0D8;
+        color: #6560D9;
+    }
+
+    #main {
+        display: flex;
+        justify-content: center;
+        padding-top: 7%;
+        gap: 20%;
+    }
+
+    .back {
+        position: absolute;
+        background-color: #0F293C;
+        width: 100%;
+        height: 50%;
+        z-index: -100000;
+        top: 0;
+    }
+
+    .seccion{
+        background-color: #6560D9;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    label {
+        color: white;
+        font-size: 20px;
+    }
+
+    input {
+        background-color: #C6D0D8;
+        border: 3px #C6D0D8 solid;
+        border-radius: 15px;
+        padding: 5px;
+        font-size: 16px;
+        margin: 15px 10px;
+        text-align: center;
+        transition: all 200ms ease-in-out;
+    }
+
+    input:focus {
+        border: 3px #0F293C solid;
+        outline: none;
+        border-radius: 15px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 15px;
+        background-color: #6560D9;
+        border: 1px #524eb1 solid;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        transition: all 300ms;
+    }
+
+    button:hover {
+        border-radius: 10px;
+        background-color: #524eb1;
+    }
+
+    p {
+        color: white;
+    }
+  </style>
+</head>
+<body>
+  <h2>Encriptar y Desencriptar Entero</h2>
+  <div id="main">
+    <div class="back"></div>
+    <div class="seccion">
+        <label for="numero">Encriptar</label><br>
+        <input type="text" id="numero" placeholder="0000" maxlength="4"><br>
+        <button onclick="encriptar()">Encriptar</button>
+        <p id="resultado"></p>
+    </div>
+
+    <div class="seccion">
+        <label for="numeroEncriptado">Desencriptar</label><br>
+        <input type="text" id="numeroEncriptado" placeholder="0000" maxlength="4"><br>
+        <button onclick="desencriptar()">Desencriptar</button>
+        <p id="resultadoDesencriptado"></p>
+    </div>
+</div>
+</div>
+</body>
+</html>
